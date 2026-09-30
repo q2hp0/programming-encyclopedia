@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming Encyclopedia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body class="dark">
+    <div id="app">
+        <section id="home" class="page active">
+            <main class="home-page">
+                <div class="home-content">
+                    <div class="home-header">
+                        <h1 class="programming-title">
+    <svg class="programming-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 3.5h11a3 3 0 0 1 3 3V20H8a3 3 0 0 0-3 3V3.5Z"/>
+        <path d="M5 20a3 3 0 0 1 3-3h11"/>
+        <path d="M9 7h6M9 11h6"/>
+    </svg>
+    <span>Programming Encyclopedia</span>
+</h1>
+                        <p>A deep technical reference for systems programming, language design, memory, concurrency, architecture and advanced programming concepts.</p>
+                    </div>
+
+                    <div class="language-grid">
+                        <article class="language-card">
+                            <div class="language-brand">
+                                <img src="cpp_logo.svg" alt="C++">
+                                <div>
+                                    <h2>C++ Encyclopedia</h2>
+                                    <p>Modern C++, systems programming, memory, concurrency, architecture and low-level design.</p>
+                                </div>
+                            </div>
+
+                            <div class="language-actions">
+                                <button onclick="openLanguage('cpp')">
+                                    <strong>All Sections</strong>
+                                    <span>Browse every C++ topic.</span>
+                                </button>
+                                <button onclick="openSources('cpp')">
+                                    <strong>Sources</strong>
+                                    <span>Documentation and references.</span>
+                                </button>
+                            </div>
+                        </article>
+
+                        <article class="language-card">
+                            <div class="language-brand">
+                                <img src="rust_logo.svg" alt="Rust" width="105" height="105">
+                                <div>
+                                    <h2>Rust Encyclopedia</h2>
+                                    <p>Ownership, unsafe Rust, concurrency, async runtimes, memory, FFI and systems architecture.</p>
+                                </div>
+                            </div>
+
+                            <div class="language-actions">
+                                <button onclick="openLanguage('rust')">
+                                    <strong>All Sections</strong>
+                                    <span>Browse every Rust topic.</span>
+                                </button>
+                                <button onclick="openSources('rust')">
+                                    <strong>Sources</strong>
+                                    <span>Rust documentation and references.</span>
+                                </button>
+                            </div>
+                        </article>
+
+                        <article class="language-card">
+                            <div class="language-brand">
+                                <img src="asm_logo.svg" alt="Assembly">
+                                <div>
+                                    <h2>Assembly Encyclopedia</h2>
+                                    <p>x86-64 architecture, machine code, ABI, memory, operating-system interfaces, SIMD, debugging and performance.</p>
+                                </div>
+                            </div>
+
+                            <div class="language-actions">
+                                <button onclick="openLanguage('asm')">
+                                    <strong>All Sections</strong>
+                                    <span>Browse every Assembly topic.</span>
+                                </button>
+                                <button onclick="openSources('asm')">
+                                    <strong>Sources</strong>
+                                    <span>Architecture manuals and references.</span>
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="featured-header">
+                        <h2>Advanced Sections</h2>
+                        <p>Selected complex topics from both language encyclopedias.</p>
+                    </div>
+
+                    <div id="featuredTopics" class="featured-topics"></div>
+                </div>
+            </main>
+        </section>
+
+        <section id="encyclopedia" class="page">
+            <header class="topbar">
+                <button class="brand" onclick="showPage('home')">Programming Encyclopedia</button>
+                <nav>
+                    <button onclick="showPage('home')">Back</button>
+                    <button onclick="openSources(currentLanguage)">Sources</button>
+                </nav>
+            </header>
+
+            <div class="workspace">
+                <aside class="sidebar">
+                    <div id="languageTitle" class="sidebar-title">All Sections</div>
+                    <input id="topicSearch" type="search" placeholder="Search topics..." oninput="filterTopics(this.value)">
+                    <div id="topicList"></div>
+                </aside>
+
+                <main class="content">
+                    <div id="topicContent"></div>
+                </main>
+            </div>
+        </section>
+
+        <section id="topic" class="page">
+            <header class="topbar">
+                <button class="brand" onclick="showPage('home')">Programming Encyclopedia</button>
+                <nav>
+                    <button onclick="backFromTopic()">Back</button>
+                    <button onclick="openSources(currentLanguage)">Sources</button>
+                </nav>
+            </header>
+            <main class="content topic-page-content">
+                <div id="standaloneTopicContent"></div>
+            </main>
+        </section>
+
+        <section id="sources" class="page">
+            <header class="topbar">
+                <button class="brand" onclick="showPage('home')">Programming Encyclopedia</button>
+                <nav>
+                    <button onclick="showPage('home')">Back</button>
+                    <button onclick="openLanguage(currentLanguage)">All Sections</button>
+                </nav>
+            </header>
+
+            <main class="sources-page">
+                <div class="sources-header">
+                    <span class="eyebrow">REFERENCE LIBRARY</span>
+                    <h1 id="sourcesTitle">Programming Sources</h1>
+                    <p id="sourcesDescription">Official documentation, language references, compiler tools, debugging resources and learning material.</p>
+                    <input id="sourceSearch" type="search" placeholder="Search sources..." oninput="filterSources(this.value)">
+                </div>
+                <div id="sourcesGrid" class="sources-grid"></div>
+            </main>
+        </section>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="data2.js"></script>
+    <script src="data3.js"></script>
+    <script src="data4.js"></script>
+    <script src="data5.js"></script>
+    <script src="data6.js"></script>
+    <script src="data7.js"></script>
+    <script src="data8.js"></script>
+    <script src="rust-data.js?v=2"></script>
+    <script src="asm-data.js"></script>
+    <script src="asm-data2.js"></script>
+    <script src="sources.js"></script>
+    <script src="asm-sources.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
