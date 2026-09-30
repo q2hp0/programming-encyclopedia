@@ -4,6 +4,8 @@ Just keeping it real: this isn't some production-ready enterprise framework or a
 
 If you stumbled across this, keep in mind it's a work-in-progress playground meant for self-education and experimenting with code.
 
+https://q2hp0.github.io/programming-encyclopedia/
+
 ## What's Actually in Here?
 
 Instead of pretending this is a massive structured application, here is a honest breakdown of the main areas and concepts you'll find floating around:
